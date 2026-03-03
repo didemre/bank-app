@@ -19,42 +19,45 @@ func main() {
 
 		// wantsCheckBalance := choice == 1
 
-		if choice == 1 {
+		switch choice {
+		case 1:
 			fmt.Println("Your balance is", accountBalance)
-		} else if choice == 2 {
+		case 2:
 			fmt.Println("How much do you want to deposit: ")
 			var depositAmount float64
 			fmt.Scan(&depositAmount)
 
 			if depositAmount <= 0 {
 				fmt.Println("Invalid amount. Must be greaer than 0.")
-				return
+				// return
+				continue
 			}
 
 			accountBalance += depositAmount // accountBalance = accountBalance + depositAmount
 			fmt.Println("Balance updated! New amount:", accountBalance)
-		} else if choice == 3 {
+		case 3:
 			fmt.Println("Withdrawal amount: ")
 			var withdrawalAmount float64
 			fmt.Scan(&withdrawalAmount)
 
 			if withdrawalAmount <= 0 {
 				fmt.Println("Invalid amount. Must be greaer than 0.")
-				return
+				continue
 			}
 
 			if withdrawalAmount > accountBalance {
 				fmt.Println("Invalid amount. You can't withdraw more than you have.")
-				return
+				continue
 			}
 
 			accountBalance -= withdrawalAmount
 			fmt.Println("Balance updated! New amount:", accountBalance)
-		} else {
+		default:
 			fmt.Println("Goodbye!")
-			return
+			return //  it finishes the function directly
+			// break // stops the loop but does not exit the function
 
 		}
-	}
 
+	}
 }
